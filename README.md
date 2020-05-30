@@ -32,7 +32,7 @@ Harmony allows you to inject code just about anywhere in the Monster Train codeb
 
 ## Working Mods
 
-This will be a list of working mods, once we have some.
+The list of currently working mods can be found [here.](https://github.com/KittenAqua/MonsterTrainModding/wiki/Working-Mods)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

@@ -25,13 +25,12 @@
       <HintPath>..\..\..\..\workshop\content\1102190\2187468759\BepInEx\core\BepInEx.Harmony.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="TrainworksModdingTools">
-      <HintPath>..\..\..\..\workshop\content\1102190\TrainworksModdingTools\plugins\TrainworksModdingTools.dll</HintPath>
+    <Reference Include="Trainworks">
+      <HintPath>..\..\..\..\workshop\content\1102190\Trainworks\plugins\Trainworks.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Unity.Addressables">
       <HintPath>..\..\MonsterTrain_Data\Managed\Unity.Addressables.dll</HintPath>
-      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\MonsterTrain_Data\Managed\UnityEngine.dll</HintPath>

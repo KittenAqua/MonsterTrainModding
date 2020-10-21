@@ -1,46 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using BepInEx;
-using BepInEx.Harmony;
-using System.Reflection;
+﻿using BepInEx;
 using HarmonyLib;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.AddressableAssets;
-using ShinyShoe;
-using MonsterTrainModdingAPI;
-using MonsterTrainModdingAPI.Interfaces;
-using MonsterTrainModdingAPI.Managers;
+using System.Collections.Generic;
+using Trainworks.Managers;
+using MonsterTrainTestMod.Utilities;
+using MonsterTrainTestMod.ModifyExistingContent;
+using System.Text;
+using MonsterTrainTestMod.SpellCards;
 using MonsterTrainTestMod.SamplePatches;
-using System.IO;
+using UnityEngine;
+using StateMechanic;
+using Trainworks.AssetConstructors;
+using Trainworks.Builders;
+using System.Runtime.CompilerServices;
+using UnityEngine.AddressableAssets;
+using System.Text.RegularExpressions;
+using Trainworks.Interfaces;
+using Trainworks.Constants;
+using MonsterTrainTestMod.MonsterCards;
+using MonsterTrainTestMod.Clans;
 
-namespace MonsterTrainModdingAPI
+namespace MonsterTrainModding
 {
+
     // Credit to Rawsome, Stable Infery for the base of this method.
-    [BepInPlugin("com.name.package.generic", "Test Plugin", "0.1")]
+    [BepInPlugin(GUID, NAME, VERSION)]
     [BepInProcess("MonsterTrain.exe")]
     [BepInProcess("MtLinkHandler.exe")]
-    [BepInDependency("api.modding.train.monster")]
+    [BepInDependency("tools.modding.trainworks")]
     public class TestPlugin : BaseUnityPlugin, IInitializable
     {
+        public const string GUID = "com.name.package.generic";
+        public const string NAME = "Test Plugin";
+        public const string VERSION = "0.1.0";
+
+        private void Awake()
+        {
+            var harmony = new Harmony(GUID);
+            harmony.PatchAll();
+        }
+
         public void Initialize()
         {
-            var harmony = new Harmony("com.name.package.generic");
-            harmony.PatchAll();
-            TestClanDataCreator.RegisterClan();
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak0", CollectableRarity.Starter);
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak1", CollectableRarity.Common);
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak2", CollectableRarity.Common);
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak3", CollectableRarity.Common);
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak4", CollectableRarity.Uncommon);
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak5", CollectableRarity.Uncommon);
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak6", CollectableRarity.Uncommon);
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak7", CollectableRarity.Rare);
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak8", CollectableRarity.Rare);
-            NotHornBreakDataCreator.RegisterCard("NotHornBreak9", CollectableRarity.Rare);
-            BlueEyesDataCreator.RegisterCard();
-            WimpcicleDataCreator.RegisterRelic();
-            AllUnitsBannerCreator.RegisterBanner();
+            TestClan.BuildAndRegister();
+            TestClanChampion.BuildAndRegister();
+            ModifyFrozenLance.Modify();
+            NotHornBreak.BuildAndRegister();
+            GiveEveryoneArmor.BuildAndRegister();
+            PlayOtherCards.BuildAndRegister();
+            SubtypeDragon.BuildAndRegister();
+            BlueEyesWhiteDragon.BuildAndRegister();
+            DragonCostume.BuildAndRegister();
+            AppleMorsel.BuildAndRegister();
+            Wimpcicle.BuildAndRegister();
+            TestClanBanner.BuildAndRegister();
         }
     }
 }
